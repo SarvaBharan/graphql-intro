@@ -11,19 +11,20 @@ type Query {
 }`);
 
 const root = {
-  hello: () => "Hey there!",
+  hello: () => {
+    return "Hey there!";
+  },
 };
 
-app.get(
+app.use(
   "/graphql",
   graphqlHTTP({
     schema,
-    source: "{hello}",
     rootValue: root,
     graphiql: true,
   })
 );
 
-app.listen(port, () =>
-  console.info(`Server started listening: http://${host}:${port}`)
-);
+app.listen(port, () => {
+  console.info(`Server started: http://${host}:${port}`);
+});
